@@ -132,7 +132,7 @@ contract("MerkleTreeWithHistory", (accounts) => {
       }
     });
 
-    it.skip("creation using 30000 elements", () => {
+    it("creation using 30000 elements", () => {
       const elements = [];
       for (let i = 1000; i < 31001; i++) {
         elements.push(i);

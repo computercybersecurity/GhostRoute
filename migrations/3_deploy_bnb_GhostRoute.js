@@ -6,7 +6,7 @@ const hasherContract = artifacts.require("Hasher");
 
 module.exports = function (deployer, network, accounts) {
   return deployer.then(async () => {
-    const { MERKLE_TREE_HEIGHT, BNB_AMOUNT } = process.env;
+    let { MERKLE_TREE_HEIGHT, BNB_AMOUNT } = process.env;
     const verifier = await Verifier.deployed();
     const hasherInstance = await hasherContract.deployed();
     await BNBGhostRoute.link(hasherContract, hasherInstance.address);

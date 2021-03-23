@@ -48,6 +48,6 @@ module.exports = {
   },
   plugins: ["truffle-plugin-verify"],
   api_keys: {
-    etherscan: "",
+    etherscan: "7D852T5MR64BZ719NQKM3PK8NYH3B1H46B",
   },
 };

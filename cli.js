@@ -266,11 +266,11 @@ async function withdraw({
   relayerURL,
   refund = "0",
 }) {
-  if (currency === "bnb" && refund !== "0") {
-    throw new Error(
-      "The BNB purchase is supposted to be 0 for BNB withdrawals"
-    );
-  }
+  // if (currency === "bnb" && refund !== "0") {
+  //   throw new Error(
+  //     "The BNB purchase is supposted to be 0 for BNB withdrawals"
+  //   );
+  // }
   refund = toWei(refund);
   if (relayerURL) {
     if (relayerURL.endsWith(".eth")) {
@@ -324,7 +324,7 @@ async function withdraw({
       });
       if (netId === 56 || netId === 97) {
         console.log(
-          `Transaction submitted through the relay. View transaction on bscscan https://${getCurrentNetworkName()}bscscan.io/tx/${
+          `Transaction submitted through the relay. View transaction on bscscan https://${getCurrentNetworkName()}bscscan.com/tx/${
             relay.data.txHash
           }`
         );
@@ -354,7 +354,7 @@ async function withdraw({
       .on("transactionHash", function (txHash) {
         if (netId === 56 || netId === 97) {
           console.log(
-            `View transaction on bscscan https://${getCurrentNetworkName()}bscscan.io/tx/${txHash}`
+            `View transaction on bscscan https://${getCurrentNetworkName()}bscscan.com/tx/${txHash}`
           );
         } else {
           console.log(`The transaction hash is ${txHash}`);
@@ -713,7 +713,7 @@ async function init({ rpc, noteNetId, currency = "dai", amount = "100" }) {
 
 async function main() {
   if (inBrowser) {
-    const instance = { currency: "bnb", amount: "0.1" };
+    const instance = { currency: "bnb", amount: "1" };
     await init(instance);
     window.deposit = async () => {
       await deposit(instance);
@@ -790,13 +790,13 @@ async function main() {
         );
         console.log(
           "From        :",
-          `https://${getCurrentNetworkName()}bscscan.io/address/${
+          `https://${getCurrentNetworkName()}bscscan.com/address/${
             depositInfo.from
           }`
         );
         console.log(
           "Transaction :",
-          `https://${getCurrentNetworkName()}bscscan.io/tx/${
+          `https://${getCurrentNetworkName()}bscscan.com/tx/${
             depositInfo.txHash
           }`
         );
@@ -821,13 +821,13 @@ async function main() {
         );
         console.log(
           "To          :",
-          `https://${getCurrentNetworkName()}bscscan.io/address/${
+          `https://${getCurrentNetworkName()}bscscan.com/address/${
             withdrawInfo.to
           }`
         );
         console.log(
           "Transaction :",
-          `https://${getCurrentNetworkName()}bscscan.io/tx/${
+          `https://${getCurrentNetworkName()}bscscan.com/tx/${
             withdrawInfo.txHash
           }`
         );
@@ -841,7 +841,7 @@ async function main() {
       .action(async () => {
         console.log("Start performing BNB deposit-withdraw test");
         let currency = "bnb";
-        let amount = "0.1";
+        let amount = "1";
         await init({ rpc: program.rpc, currency, amount });
         let noteString = await deposit({ currency, amount });
         let parsedNote = parseNote(noteString);
